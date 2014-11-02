@@ -3,6 +3,8 @@ package com.example.brandon_pc.cloudapp2;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/* Contact class
+ */
 public class Contact implements Parcelable {
     public String name;
     public int days;

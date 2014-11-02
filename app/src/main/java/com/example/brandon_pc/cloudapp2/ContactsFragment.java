@@ -16,6 +16,8 @@ public class ContactsFragment extends Fragment implements Animation.AnimationLis
     private ContactSelectedListener mListener;
 
     public interface ContactSelectedListener {
+
+        // contact selected event
         public void onContactSelected(Contact c);
     }
 
@@ -23,14 +25,18 @@ public class ContactsFragment extends Fragment implements Animation.AnimationLis
         View view = inflater.inflate(R.layout.contacts_fragment, container, false);
 
         Bundle args = getArguments();
-        int bgColor = args.getInt("bgColor");
+
+        // background color
+        int bgColor = args.getInt(getString(R.string.bgcolor));
         view.setBackgroundColor(bgColor);
 
-        ListView listView = (ListView)view.findViewById(R.id.listViewContacts);
-        ArrayList<Contact> contacts = ((MainActivity)getActivity()).getContacts();
+        // contacts adapter
+        ArrayList<Contact> contacts = args.getParcelableArrayList(getString(R.string.contact_list));
         ContactsAdapter adapter = new ContactsAdapter(getActivity(), android.R.layout.simple_list_item_1, contacts);
-        listView.setAdapter(adapter);
 
+        // init listview
+        ListView listView = (ListView)view.findViewById(R.id.listViewContacts);
+        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mListener != null)
@@ -52,6 +58,9 @@ public class ContactsFragment extends Fragment implements Animation.AnimationLis
         if (anim == null && nextAnim != 0) {
             anim = AnimationUtils.loadAnimation(getActivity(), nextAnim);
 
+            /* listener for show animation
+             * (to hide list during animation)
+             */
             if (enter)
                 anim.setAnimationListener(this);
 
@@ -61,6 +70,7 @@ public class ContactsFragment extends Fragment implements Animation.AnimationLis
         return anim;
     }
 
+    // AnimationListener
     @Override
     public void onAnimationStart(Animation animation) {
         getView().findViewById(R.id.listViewContacts).setVisibility(View.INVISIBLE);

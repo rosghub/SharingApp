@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
+/* Viewpager adapter
+ */
 public class PagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> fragmentList;
 

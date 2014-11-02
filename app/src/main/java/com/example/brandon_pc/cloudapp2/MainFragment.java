@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/* Home page fragment
+ */
 public class MainFragment extends Fragment implements PieView.PieClickListener {
     private ActionListener listener;
 
+    // click events for pieview
     public interface ActionListener {
         public void onMessagingClick();
         public void onPhotosClick();
@@ -26,6 +29,7 @@ public class MainFragment extends Fragment implements PieView.PieClickListener {
 
     public void setOnActionListener(ActionListener l) { listener = l; }
 
+    // ActionListener for main activity
     @Override
     public void onLeftClick() {
         listener.onMessagingClick();

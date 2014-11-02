@@ -24,6 +24,7 @@ public class MainActivity extends FragmentActivity
     private int state;
     private String actionText;
 
+    // constants
     private static int STATE_HOME = 0x01, STATE_SELECTION = 0x02;
 
     @Override
@@ -33,30 +34,8 @@ public class MainActivity extends FragmentActivity
 
         // init actionbar
         action = ActionBarController.init(getActionBar());
-
-        // init viewpager fragments
-        mainFragment = new MainFragment();
-        mainFragment.setOnActionListener(this);
-
-        contactsFragment = new ContactsFragment();
-        Bundle args = new Bundle();
-        args.putInt("bgColor", getResources().getColor(R.color.blue));
-        contactsFragment.setArguments(args);
-
-        inboxFragment = new InboxFragment();
-
-        // init viewpager
-        ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
-        fragmentList.add(contactsFragment);
-        fragmentList.add(mainFragment);
-        fragmentList.add(inboxFragment);
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), fragmentList);
-        viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(1);
-        viewPager.setOnPageChangeListener(this);
-
+        
+        // init contact list
         contacts = new ArrayList<Contact>();
         // sample contacts
         for (int i = 1; i <= 6; ++i) {
@@ -66,19 +45,34 @@ public class MainActivity extends FragmentActivity
             contacts.add(c);
         }
 
+        // init viewpager fragments
+        mainFragment = new MainFragment();
+        mainFragment.setOnActionListener(this);
+
+        contactsFragment = new ContactsFragment();
+        Bundle args = new Bundle(); 
+        args.putParcelableArrayList(getString(R.string.contact_list), contacts);
+        args.putInt(getString(R.string.bgcolor), getResources().getColor(R.color.blue));
+        contactsFragment.setArguments(args);
+
+        inboxFragment = new InboxFragment();
+
+        // init adapter
+        ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
+        fragmentList.add(contactsFragment);
+        fragmentList.add(mainFragment);
+        fragmentList.add(inboxFragment);
+        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), fragmentList);
+
+        // init viewpager
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(1); // home
+        viewPager.setOnPageChangeListener(this);
+
         getSupportFragmentManager().addOnBackStackChangedListener(this);
 
         state = STATE_HOME;
-    }
-
-    public static Typeface getTypeFace(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "fonts/montserrat.ttf");
-    }
-
-    private void startMessaging(Contact c) {
-        Intent intent = new Intent(this, MessagingActivity.class);
-        intent.putExtra(getResources().getString(R.string.contact_id), c);
-        startActivity(intent);
     }
 
     public void onBackPressed() {
@@ -89,10 +83,33 @@ public class MainActivity extends FragmentActivity
             super.onBackPressed();
     }
 
-    public ArrayList<Contact> getContacts() {
-        return contacts;
+    // get font
+    public static Typeface getTypeFace(Context context) {
+        return Typeface.createFromAsset(context.getAssets(), "fonts/montserrat.ttf");
     }
 
+    // start messaging activity
+    private void startMessaging(Contact c) {
+        Intent intent = new Intent(this, MessagingActivity.class);
+        intent.putExtra(getString(R.string.contact), c);
+        startActivity(intent);
+    }
+
+    // update action bar
+    public void updateActionView() {
+        if (state == STATE_HOME) {
+            action.setTitle(false, null);
+            action.setBack(false);
+            action.setTabs(true);
+        }
+        else {
+            action.setTabs(false);
+            action.setTitle(true, actionText);
+            action.setBack(true);
+        }
+    }
+
+    // xml actionbar button events
     public void actionBarBackClick(View view) {
         onBackPressed();
     }
@@ -109,18 +126,6 @@ public class MainActivity extends FragmentActivity
         ((ViewPager)findViewById(R.id.pager)).setCurrentItem(2);
     }
 
-    public void updateActionView() {
-        if (state == STATE_HOME) {
-            action.setTitle(false, null);
-            action.setBack(false);
-            action.setTabs(true);
-        }
-        else {
-            action.setTabs(false);
-            action.setTitle(true, actionText);
-            action.setBack(true);
-        }
-    }
 
     // PageChangedListener
     @Override
@@ -155,7 +160,7 @@ public class MainActivity extends FragmentActivity
         state = STATE_SELECTION;
         actionText = "Photos";
         updateActionView();
-
+        
         startContactsPick(R.anim.pics_show, R.anim.pics_hide, getResources().getColor(R.color.green), null);
     }
 
@@ -168,10 +173,12 @@ public class MainActivity extends FragmentActivity
         startContactsPick(R.anim.poke_show, R.anim.poke_hide, getResources().getColor(R.color.purple), null);
     }
 
+    // show contacts selection fragment
     private void startContactsPick(int animShow, int animExit, int bgColor,
                                   ContactsFragment.ContactSelectedListener listener) {
         Bundle args = new Bundle();
         args.putInt("bgColor", bgColor);
+        args.putParcelableArrayList(getString(R.string.contact_list), contacts);
 
         contactSelectionFragment = new ContactsFragment();
         contactSelectionFragment.setArguments(args);

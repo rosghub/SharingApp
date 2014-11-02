@@ -4,24 +4,30 @@ import android.app.ActionBar;
 import android.view.View;
 import android.widget.TextView;
 
+/* For controlling actionbar custom views buttons/tabs
+ * Use: controller = ActionBarController.init(getActionBar());
+ */
 public class ActionBarController {
     private View view;
 
-    public ActionBarController(View v) {
+    private ActionBarController(View v) {
         view = v;
-        ((TextView)view.findViewById(R.id.tvActionBar)).setTypeface(MainActivity.getTypeFace(view.getContext()));
     }
 
+    // init actionbar
     public static ActionBarController init(ActionBar actionBar) {
+        // set custom view
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.actionbar_layout);
 
+        // set textview font
         View v = actionBar.getCustomView();
         ((TextView)v.findViewById(R.id.tvActionBar)).setTypeface(MainActivity.getTypeFace(v.getContext()));
 
         return new ActionBarController(v);
     }
 
+    // show/hide tab buttons
     public void setTabs(boolean show) {
         int visibility = (show ? View.VISIBLE : View.INVISIBLE);
         view.findViewById(R.id.actionContacts).setVisibility(visibility);
@@ -29,6 +35,7 @@ public class ActionBarController {
         view.findViewById(R.id.actionInbox).setVisibility(visibility);
     }
 
+    // set current tab
     public void setTab(int i) {
         if (i == 0) {
             view.findViewById(R.id.actionContacts).setAlpha(1);
@@ -50,6 +57,8 @@ public class ActionBarController {
         }
     }
 
+    // show/hide title
+    // use: setTitle(true, title) / setTitle(false, null)
     public void setTitle(boolean show, String title) {
         TextView tv = (TextView)view.findViewById(R.id.tvActionBar);
         if (show) {
@@ -60,10 +69,12 @@ public class ActionBarController {
             tv.setVisibility(View.INVISIBLE);
     }
 
+    // show/hide new button
     public void setNew(boolean show) {
         view.findViewById(R.id.actionNew).setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
+    // show/hide back button
     public void setBack(boolean show) {
         view.findViewById(R.id.actionBack).setVisibility(show ? View.VISIBLE : View.GONE);
     }

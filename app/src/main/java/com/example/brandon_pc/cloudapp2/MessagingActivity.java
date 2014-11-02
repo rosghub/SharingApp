@@ -8,12 +8,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 
 public class MessagingActivity extends Activity {
     private Contact contact;
-    private ArrayList<Message> messages;
+    private ArrayList<Message> messages; // message log
     private ActionBarController action;
 
     @Override
@@ -21,9 +20,10 @@ public class MessagingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messaging);
 
-        // arg
-        contact = getIntent().getParcelableExtra(getResources().getString(R.string.contact_id));
+        // get contact list
+        contact = getIntent().getParcelableExtra(getString(R.string.contact));
 
+        // setup actionbar
         action = ActionBarController.init(getActionBar());
         action.setTabs(false);
         action.setBack(true);
@@ -48,14 +48,18 @@ public class MessagingActivity extends Activity {
         listView.setAdapter(adapter);
     }
 
+    // send message click
     public void btnSendClick(View view) {
         EditText editText = (EditText)findViewById(R.id.editTextMessage);
         String msg = editText.getText().toString().trim();
         if (!msg.isEmpty()) {
-            // send message
-            editText.setText("");
+            // send message here...
 
-            messages.add(new Message(msg, true));
+            editText.setText(""); // clear edittext
+
+            messages.add(new Message(msg, true)); // add to message log
+
+            // update message list
             ListView listView = (ListView)findViewById(R.id.listViewMessages);
             ((ArrayAdapter)listView.getAdapter()).notifyDataSetChanged();
         }
