@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp" >
+
+    <View
+        android:id="@+id/arrow_left"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="7.5dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/msg_arrow_left"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/arrow_left"
+        android:layout_toLeftOf="@+id/arrow_right"
+        android:textAppearance="?android:attr/textAppearanceButton"
+        android:padding="15dp"
+        />
+
+    <View
+        android:id="@+id/arrow_right"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="7.5dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/msg_arrow_right"
+        android:visibility="invisible" />
+
+
+
+</RelativeLayout>
+
+    <!-- arrow_left w:45 mb:17 arrow_right w:45 mt:17 !-->

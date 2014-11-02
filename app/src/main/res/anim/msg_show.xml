@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <translate
+        android:fromXDelta="-50%p"
+        android:toXDelta="0"
+        android:fromYDelta="-45%p"
+        android:toYDelta="0"
+        android:duration="750" />
+
+
+</set>
+
+    <!--
+          <objectAnimator
+        android:propertyName="yFraction"
+        android:valueType="floatType"
+        android:valueFrom="@dimen/anim_offset_Y"
+        android:valueTo="0"
+        android:duration="750" />
+
+    <objectAnimator
+        android:propertyName="xFraction"
+        android:valueType="floatType"
+        android:valueFrom="@dimen/anim_offset_leftX"
+        android:valueTo="0"
+        android:duration="750" />
+
+    </set> -->

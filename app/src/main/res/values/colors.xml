@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue">#ff3f8dc0</color>
+    <color name="purple">#ff9149af</color>
+    <color name="green">#ff1abc9c</color>
+    <color name="orange">#fff1c40f</color>
+    <color name="g_indic">#ff00ff00</color>
+    <color name="y_indic">#ffd8e95c</color>
+    <color name="r_indic">#ffff0000</color>
+</resources>
+    <!--
+    <color name="blue">#ffff66cc</color>
+    <color name="purple">#ff99ff66</color>
+    <color name="green">#ff66ffff</color>
+</resources>
+
+    !-->

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="@color/orange"
+    >
+
+    <ImageButton
+        android:id="@+id/actionBack"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_action_back"
+        android:background="@null"
+        android:visibility="gone"
+        android:onClick="actionBarBackClick"/>
+
+    <ImageButton
+        android:id="@+id/actionContacts"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/actionHome"
+        android:src="@drawable/ic_action_user"
+        android:background="@null"
+        android:alpha=".50"
+        android:onClick="actionBarContactsClick"
+        />
+
+    <ImageButton
+        android:id="@+id/actionHome"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_action_share"
+        android:background="@null"
+        android:onClick="actionBarHomeClick"
+        />
+
+    <ImageButton
+        android:id="@+id/actionInbox"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/actionHome"
+        android:src="@drawable/ic_action_inbox"
+        android:background="@null"
+        android:alpha=".50"
+        android:onClick="actionBarInboxClick"
+        />
+
+    <TextView
+        android:id="@+id/tvActionBar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textSize="80px"
+        android:textStyle="bold"
+        android:textColor="#ffffffff"
+        android:visibility="invisible"
+        android:fontFamily="montserrat"
+        />
+
+    <ImageButton
+        android:id="@+id/actionNew"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_action_new"
+        android:background="@null"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>
