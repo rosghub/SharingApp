@@ -8,36 +8,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!--
-    <com.example.brandon_pc.cloudapp2.LinearLayoutAnim
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="invisible" >
-
-
-        <com.example.brandon_pc.cloudapp2.TextViewAnim
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:gravity="center"
-            android:text="Poke"
-            android:textSize="80px"
-            android:textStyle="bold"
-            android:textColor="#ffffffff"
-            android:clickable="true"
-            android:onClick="onTvClick"
-            />
-
-        <ListView
-            android:id="@+id/listViewContacts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"
-            />
-
-
-    </com.example.brandon_pc.cloudapp2.LinearLayoutAnim>
-    -->
 </RelativeLayout>
