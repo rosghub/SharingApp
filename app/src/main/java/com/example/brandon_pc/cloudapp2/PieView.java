@@ -76,7 +76,8 @@ public class PieView extends View {
         path.lineTo(p1.x, p1.y);
         path.close();
 
-        // REMOVE
+        // for graphics design preview
+        // not necessary
         if (paint == null)
             paint = new Paint();
 
