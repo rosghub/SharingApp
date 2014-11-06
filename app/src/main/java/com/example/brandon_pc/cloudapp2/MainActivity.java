@@ -177,7 +177,7 @@ public class MainActivity extends FragmentActivity
     private void startContactsPick(int animShow, int animExit, int bgColor,
                                   ContactsFragment.ContactSelectedListener listener) {
         Bundle args = new Bundle();
-        args.putInt("bgColor", bgColor);
+        args.putInt(getString(R.string.bgcolor), bgColor);
         args.putParcelableArrayList(getString(R.string.contact_list), contacts);
 
         contactSelectionFragment = new ContactsFragment();
